@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>หจก.โชคดี รับซื้อของเก่า | รับซื้อของเก่าและโลหะมีค่า</title>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&family=Prompt:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-dark: #1b5e20;
+    --green-main: #2e7d32;
+    --green-mid: #388e3c;
+    --green-light: #66bb6a;
+    --green-pale: #c8e6c9;
+    --green-bg: #f1f8f1;
+    --white: #ffffff;
+    --gray-light: #f5f5f5;
+    --gray: #757575;
+    --text-dark: #1a2e1a;
+    --text-body: #2d4a2d;
+    --accent: #ff8f00;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Sarabun', sans-serif;
+    background: var(--white);
+    color: var(--text-body);
+    overflow-x: hidden;
+  }
+
+  /* ===== NAVBAR ===== */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 2px solid var(--green-pale);
+    padding: 0 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+
+  .nav-logo {
+    font-family: 'Prompt', sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--green-dark);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .nav-logo span {
+    background: var(--green-main);
+    color: white;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--green-dark);
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--green-light); }
+
+  .nav-cta {
+    background: var(--green-main);
+    color: white !important;
+    padding: 8px 20px;
+    border-radius: 50px;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--green-dark) !important; color: white !important; }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(160deg, #1b5e20 0%, #2e7d32 40%, #388e3c 70%, #4caf50 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 80px 5% 60px;
+  }
+
+  /* Leaf SVG decorations */
+  .leaf-deco {
+    position: absolute;
+    opacity: 0.12;
+    pointer-events: none;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 700px;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.4);
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 6px 18px;
+    border-radius: 50px;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+  }
+
+  .hero h1 {
+    font-family: 'Prompt', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.2;
+    margin-bottom: 8px;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.2);
+  }
+
+  .hero h1 .highlight {
+    color: #a5d6a7;
+  }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 36px;
+    line-height: 1.8;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: #ffffff;
+    color: var(--green-dark);
+    font-family: 'Sarabun', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 14px 32px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  }
+
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.2); }
+
+  .btn-outline {
+    background: transparent;
+    border: 2px solid rgba(255,255,255,0.7);
+    color: #ffffff;
+    font-family: 'Sarabun', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 13px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .btn-outline:hover { background: rgba(255,255,255,0.15); transform: translateY(-2px); }
+
+  /* Stats bar */
+  .hero-stats {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    margin-top: 48px;
+    flex-wrap: wrap;
+  }
+
+  .stat-item {
+    text-align: center;
+    color: white;
+  }
+
+  .stat-num {
+    font-family: 'Prompt', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 800;
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    opacity: 0.8;
+    letter-spacing: 0.5px;
+  }
+
+  /* Scroll arrow */
+  .scroll-arrow {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,0.6);
+    font-size: 1.5rem;
+    animation: bounce 1.6s infinite;
+  }
+
+  @keyframes bounce {
+    0%,100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  /* ===== SECTION COMMON ===== */
+  section { padding: 72px 5%; }
+
+  .section-tag {
+    display: inline-block;
+    background: var(--green-pale);
+    color: var(--green-dark);
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 1.5px;
+    padding: 5px 14px;
+    border-radius: 50px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+
+  .section-title {
+    font-family: 'Prompt', sans-serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 700;
+    color: var(--green-dark);
+    margin-bottom: 8px;
+  }
+
+  .section-sub {
+    color: var(--gray);
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 560px;
+    margin-bottom: 40px;
+  }
+
+  /* ===== SERVICES ===== */
+  .services { background: var(--green-bg); }
+
+  .services-header { text-align: center; }
+  .services-header .section-sub { margin: 0 auto 40px; }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .card {
+    background: white;
+    border-radius: 16px;
+    padding: 28px 24px;
+    text-align: center;
+    border: 1.5px solid var(--green-pale);
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--green-main), var(--green-light));
+    transform: scaleX(0);
+    transition: transform 0.3s;
+    transform-origin: left;
+  }
+
+  .card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(46,125,50,0.12); border-color: var(--green-light); }
+  .card:hover::before { transform: scaleX(1); }
+
+  .card-icon {
+    font-size: 2.8rem;
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  .card h3 {
+    font-family: 'Prompt', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--green-dark);
+    margin-bottom: 8px;
+  }
+
+  .card p {
+    font-size: 0.9rem;
+    color: var(--gray);
+    line-height: 1.6;
+  }
+
+  /* ===== PRICE TABLE ===== */
+  .price-section { background: white; }
+
+  .price-note {
+    background: #fff8e1;
+    border-left: 4px solid var(--accent);
+    padding: 12px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 0.88rem;
+    color: #6d4c00;
+    margin-bottom: 28px;
+    max-width: 720px;
+  }
+
+  .price-tabs {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+
+  .tab-btn {
+    padding: 9px 22px;
+    border: 2px solid var(--green-pale);
+    border-radius: 50px;
+    background: white;
+    color: var(--green-dark);
+    font-family: 'Sarabun', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .tab-btn.active, .tab-btn:hover {
+    background: var(--green-main);
+    color: white;
+    border-color: var(--green-main);
+  }
+
+  .price-table {
+    display: none;
+    max-width: 720px;
+  }
+
+  .price-table.active { display: block; }
+
+  .price-table table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 20px rgba(46,125,50,0.08);
+  }
+
+  .price-table thead tr {
+    background: var(--green-main);
+    color: white;
+  }
+
+  .price-table th {
+    padding: 14px 18px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 0.95rem;
+  }
+
+  .price-table td {
+    padding: 12px 18px;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 0.95rem;
+  }
+
+  .price-table tr:last-child td { border-bottom: none; }
+  .price-table tr:nth-child(even) td { background: var(--green-bg); }
+  .price-table tr:hover td { background: var(--green-pale); }
+
+  .price-val {
+    font-weight: 700;
+    color: var(--green-dark);
+    font-family: 'Prompt', sans-serif;
+    font-size: 1rem;
+  }
+
+  .unit {
+    font-size: 0.78rem;
+    color: var(--gray);
+    font-weight: 400;
+  }
+
+  .tag-stop {
+    background: #ffebee;
+    color: #c62828;
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 50px;
+    font-weight: 600;
+  }
+
+  /* ===== CONTACT ===== */
+  .contact-section {
+    background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    max-width: 1000px;
+    margin: 0 auto;
+    align-items: start;
+  }
+
+  .contact-info h2 {
+    font-family: 'Prompt', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+  }
+
+  .contact-info p {
+    opacity: 0.85;
+    margin-bottom: 32px;
+    line-height: 1.7;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+
+  .contact-icon {
+    font-size: 1.4rem;
+    min-width: 36px;
+    height: 36px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .contact-text {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .contact-text a {
+    color: #a5d6a7;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .contact-text strong {
+    display: block;
+    font-size: 0.82rem;
+    opacity: 0.7;
+    font-weight: 400;
+    margin-bottom: 2px;
+  }
+
+  .map-box {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 16px 50px rgba(0,0,0,0.25);
+    height: 320px;
+    background: #c8e6c9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 14px;
+    border: 2px solid rgba(255,255,255,0.2);
+  }
+
+  .map-box iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+
+  .map-placeholder {
+    text-align: center;
+    color: var(--green-dark);
+  }
+
+  .btn-map {
+    display: inline-block;
+    background: white;
+    color: var(--green-dark);
+    font-weight: 700;
+    padding: 12px 28px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  }
+
+  .btn-map:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+
+  /* ===== LINE BUTTON ===== */
+  .line-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #06C755;
+    color: white;
+    font-weight: 700;
+    padding: 13px 28px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 16px rgba(6,199,85,0.35);
+    margin-top: 8px;
+  }
+
+  .line-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(6,199,85,0.45); }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--green-dark);
+    color: rgba(255,255,255,0.7);
+    text-align: center;
+    padding: 28px 5%;
+    font-size: 0.88rem;
+  }
+
+  footer strong { color: white; }
+
+  /* ===== LEAF BACKGROUND PATTERN ===== */
+  .leaf-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    nav { padding: 0 4%; }
+    .nav-links { display: none; }
+    .contact-grid { grid-template-columns: 1fr; gap: 28px; }
+    .hero-stats { gap: 24px; }
+    .map-box { height: 260px; }
+  }
+
+  /* Leaf animation */
+  @keyframes floatLeaf {
+    0% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-18px) rotate(8deg); }
+    100% { transform: translateY(0) rotate(0deg); }
+  }
+
+  .leaf-float { animation: floatLeaf 6s ease-in-out infinite; }
+  .leaf-float-2 { animation: floatLeaf 8s ease-in-out 1s infinite; }
+  .leaf-float-3 { animation: floatLeaf 7s ease-in-out 2s infinite; }
+
+  /* fade in */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-content { animation: fadeUp 0.8s ease forwards; }
+</style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav>
+  <div class="nav-logo">
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+      <circle cx="14" cy="14" r="14" fill="#2e7d32"/>
+      <path d="M14 6 Q20 10 18 18 Q14 22 10 18 Q8 10 14 6Z" fill="#a5d6a7"/>
+      <line x1="14" y1="6" x2="14" y2="22" stroke="#1b5e20" stroke-width="1.5"/>
+    </svg>
+    <span>หจก.</span>โชคดี รับซื้อของเก่า
+  </div>
+  <ul class="nav-links">
+    <li><a href="#services">บริการ</a></li>
+    <li><a href="#price">ราคาวันนี้</a></li>
+    <li><a href="#contact" class="nav-cta">ติดต่อเรา</a></li>
+  </ul>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="home">
+
+  <!-- Leaf decorations SVG -->
+  <div class="leaf-bg">
+    <svg width="100%" height="100%" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <!-- Large leaves -->
+      <g class="leaf-float" transform="translate(30,40)">
+        <path d="M0,0 Q60,50 0,100 Q-60,50 0,0Z" fill="white"/>
+        <line x1="0" y1="0" x2="0" y2="100" stroke="white" stroke-width="2"/>
+      </g>
+      <g class="leaf-float-2" transform="translate(1120,30) rotate(20)">
+        <path d="M0,0 Q70,55 0,110 Q-70,55 0,0Z" fill="white"/>
+        <line x1="0" y1="0" x2="0" y2="110" stroke="white" stroke-width="2"/>
+      </g>
+      <g class="leaf-float-3" transform="translate(60,350) rotate(-30)">
+        <path d="M0,0 Q50,40 0,80 Q-50,40 0,0Z" fill="white"/>
+        <line x1="0" y1="0" x2="0" y2="80" stroke="white" stroke-width="2"/>
+      </g>
+      <g class="leaf-float" transform="translate(1140,300) rotate(40)">
+        <path d="M0,0 Q55,45 0,90 Q-55,45 0,0Z" fill="white"/>
+        <line x1="0" y1="0" x2="0" y2="90" stroke="white" stroke-width="2"/>
+      </g>
+      <g class="leaf-float-2" transform="translate(200,600) rotate(-15)">
+        <path d="M0,0 Q45,38 0,76 Q-45,38 0,0Z" fill="white"/>
+        <line x1="0" y1="0" x2="0" y2="76" stroke="white" stroke-width="2"/>
+      </g>
+      <g class="leaf-float-3" transform="translate(950,580) rotate(25)">
+        <path d="M0,0 Q55,44 0,88 Q-55,44 0,0Z" fill="white"/>
+        <line x1="0" y1="0" x2="0" y2="88" stroke="white" stroke-width="2"/>
+      </g>
+      <g class="leaf-float" transform="translate(500,640) rotate(10)">
+        <path d="M0,0 Q40,32 0,64 Q-40,32 0,0Z" fill="white"/>
+        <line x1="0" y1="0" x2="0" y2="64" stroke="white" stroke-width="2"/>
+      </g>
+      <g class="leaf-float-2" transform="translate(720,30) rotate(-10)">
+        <path d="M0,0 Q40,34 0,68 Q-40,34 0,0Z" fill="white"/>
+        <line x1="0" y1="0" x2="0" y2="68" stroke="white" stroke-width="2"/>
+      </g>
+      <!-- Small scatter leaves -->
+      <g transform="translate(400,120) rotate(35)"><path d="M0,0 Q28,22 0,44 Q-28,22 0,0Z" fill="white"/></g>
+      <g transform="translate(820,150) rotate(-20)"><path d="M0,0 Q30,24 0,48 Q-30,24 0,0Z" fill="white"/></g>
+      <g transform="translate(300,500) rotate(50)"><path d="M0,0 Q25,20 0,40 Q-25,20 0,0Z" fill="white"/></g>
+      <g transform="translate(870,480) rotate(-40)"><path d="M0,0 Q28,22 0,44 Q-28,22 0,0Z" fill="white"/></g>
+    </svg>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-badge">♻ รับซื้อของเก่าทุกประเภท</div>
+    <h1>
+      หจก.โชคดี<br>
+      <span class="highlight">รับซื้อของเก่า</span>
+    </h1>
+    <p class="hero-sub">
+      รับซื้อของเก่า โลหะ กระดาษ พลาสติก และอื่นๆ<br>
+      ราคายุติธรรม ชั่งโปร่งใส บริการถึงที่
+    </p>
+    <div class="hero-btns">
+      <a href="tel:0851674683" class="btn-primary">📞 โทรหาเรา</a>
+      <a href="#price" class="btn-outline">ดูราคาวันนี้ ↓</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-num">10+</span>
+        <span class="stat-label">ปีประสบการณ์</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">100%</span>
+        <span class="stat-label">ซื่อสัตย์โปร่งใส</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">24h</span>
+        <span class="stat-label">ติดต่อได้ตลอด</span>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-arrow">↓</div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section class="services" id="services">
+  <div class="services-header">
+    <div class="section-tag">บริการของเรา</div>
+    <h2 class="section-title">รับซื้อทุกประเภท</h2>
+    <p class="section-sub">เราให้ราคายุติธรรม ชั่งน้ำหนักโปร่งใส พร้อมรับซื้อถึงที่</p>
+  </div>
+  <div class="cards-grid">
+    <div class="card">
+      <span class="card-icon">🔩</span>
+      <h3>เหล็กและโลหะ</h3>
+      <p>เหล็กหล่อ เหล็กเส้น เหล็กหนา เหล็กบาง และโลหะทุกชนิด</p>
+    </div>
+    <div class="card">
+      <span class="card-icon">📰</span>
+      <h3>กระดาษ</h3>
+      <p>กระดาษแข็ง กระดาษขาว-ดำ กล่อง กระดาษหนังสือพิมพ์</p>
+    </div>
+    <div class="card">
+      <span class="card-icon">🧴</span>
+      <h3>พลาสติก</h3>
+      <p>ขวดพลาสติก ถุง โฟม และพลาสติกทุกประเภท</p>
+    </div>
+    <div class="card">
+      <span class="card-icon">🫙</span>
+      <h3>แก้วและขวด</h3>
+      <p>ขวดแก้ว ขวดเบียร์ ขวดเหล้า เศษแก้วทุกสี</p>
+    </div>
+    <div class="card">
+      <span class="card-icon">🔋</span>
+      <h3>ของเก่าทั่วไป</h3>
+      <p>แบตเตอรี่ เครื่องใช้ไฟฟ้าเก่า ทองแดง อลูมิเนียม</p>
+    </div>
+    <div class="card">
+      <span class="card-icon">🚛</span>
+      <h3>รับถึงที่</h3>
+      <p>มีบริการรับของถึงบ้าน/โรงงาน สะดวกรวดเร็ว</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRICE TABLE ===== -->
+<section class="price-section" id="price">
+  <div class="section-tag">ราคาวันนี้</div>
+  <h2 class="section-title">ราคารับซื้อของเก่า</h2>
+  <p class="section-sub">อ้างอิงราคากลางจาก <a href="https://wongpanit.com" target="_blank" style="color:var(--green-main);font-weight:600;">วงษ์พาณิชย์</a> · หน่วย บาท/กิโลกรัม</p>
+
+  <div class="price-note">
+    ⚠️ ราคานี้เป็นราคากลางอ้างอิง ราคาจริงอาจมีการเปลี่ยนแปลงตามตลาด กรุณาติดต่อสอบถามก่อนนำของมาขาย
+  </div>
+
+  <div class="price-tabs">
+    <button class="tab-btn active" onclick="showTab('iron')">🔩 เหล็ก</button>
+    <button class="tab-btn" onclick="showTab('paper')">📰 กระดาษ</button>
+    <button class="tab-btn" onclick="showTab('glass')">🫙 แก้ว/ขวด</button>
+  </div>
+
+  <!-- IRON -->
+  <div class="price-table active" id="tab-iron">
+    <table>
+      <thead>
+        <tr>
+          <th>ประเภท</th>
+          <th>ราคา (บาท/กก.)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>เหล็กหล่อชิ้นเล็ก (No.1)</td><td><span class="price-val">7.90</span> <span class="unit">บาท/กก.</span></td></tr>
+        <tr><td>เหล็กหล่อชิ้นใหญ่ (No.2) ไม่เกิน 500 กก.</td><td><span class="price-val">5.90</span> <span class="unit">บาท/กก.</span></td></tr>
+        <tr><td>เหล็กหล่อชิ้นใหญ่ (No.3) 500-1,500 กก.</td><td><span class="price-val">4.70</span> <span class="unit">บาท/กก.</span></td></tr>
+        <tr><td>เหล็กเส้นยุ่งๆ</td><td><span class="price-val">6.10</span> <span class="unit">บาท/กก.</span></td></tr>
+        <tr><td>เหล็กเส้น 6 หุน (ยาว 2.50 ม.ขึ้นไป)</td><td><span class="price-val">8.10</span> <span class="unit">บาท/กก.</span></td></tr>
+        <tr><td>เหล็กบางซอยสั้น (ไม่เกิน 50 ซม.)</td><td><span class="price-val">7.40</span> <span class="unit">บาท/กก.</span></td></tr>
+        <tr><td>เหล็กบางไม่ซอย</td><td><span class="price-val">5.10</span> <span class="unit">บาท/กก.</span></td></tr>
+        <tr><td>เหล็กหนาซอยสั้น (ไม่เกิน 80 ซม.)</td><td><span class="price-val">8.40</span> <span class="unit">บาท/กก.</span></td></tr>
+        <tr><td>เหล็กหนาไม่ซอย</td><td><span class="price-val">6.40</span> <span class="unit">บาท/กก.</span></td></tr>
+        <tr><td>เหล็กตะปู</td><td><span class="price-val">7.40</span> <span class="unit">บาท/กก.</span></td></tr>
+        <tr><td>เหล็กโช๊คอัพ</td><td><span class="price-val">3.40</span> <span class="unit">บาท/กก.</span></td></tr>
+        <tr><td>สังกะสี</td><td><span class="price-val">3.80</span> <span class="unit">บาท/กก.</span></td></tr>
+        <tr><td>กระป๋อง</td><td><span class="price-val">5.50</span> <span class="unit">บาท/กก.</span></td></tr>
+        <tr><td>ลวดสลิง (มัดมา)</td><td><span class="price-val">5.80</span> <span class="unit">บาท/กก.</span></td></tr>
+        <tr><td>ลวดสลิง (ยุ่งๆ/ไม่มัดมา)</td><td><span class="price-val">4.50</span> <span class="unit">บาท/กก.</span></td></tr>
+        <tr><td>เหล็กขี้กลึง</td><td><span class="price-val">3.20</span> <span class="unit">บาท/กก.</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- PAPER -->
+  <div class="price-table" id="tab-paper">
+    <table>
+      <thead>
+        <tr>
+          <th>ประเภท</th>
+          <th>ราคา (บาท/กก.)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>กระดาษแข็งกล่องน้ำตาล (A)</td><td><span class="price-val">2.60</span> <span class="unit">บาท/กก.</span></td></tr>
+        <tr><td>กระดาษแข็งกล่องน้ำตาล (B)</td><td><span class="price-val">2.40</span> <span class="unit">บาท/กก.</span></td></tr>
+        <tr><td>กระดาษขาว-ดำ เกรด A</td><td><span class="price-val">5.00</span> <span class="unit">บาท/กก.</span></td></tr>
+        <tr><td>กระดาษขาว-ดำ เกรด B</td><td><span class="price-val">3.00</span> <span class="unit">บาท/กก.</span></td></tr>
+        <tr><td>กระดาษขาว-ดำ เกรด C</td><td><span class="price-val">2.00</span> <span class="unit">บาท/กก.</span></td></tr>
+        <tr><td>กระดาษย่อยสวย</td><td><span class="price-val">1.20</span> <span class="unit">บาท/กก.</span></td></tr>
+        <tr><td>กระดาษหนังสือเล่มรวม</td><td><span class="price-val">1.20</span> <span class="unit">บาท/กก.</span></td></tr>
+        <tr><td>กระดาษสี/กล่องรองเท้า/กล่องผลไม้</td><td><span class="price-val">1.20</span> <span class="unit">บาท/กก.</span></td></tr>
+        <tr><td>กระดาษอาร์ตมัน</td><td><span class="price-val">1.20</span> <span class="unit">บาท/กก.</span></td></tr>
+        <tr><td>กระดาษกล่องนม/กล่องน้ำผลไม้</td><td><span class="price-val">5.00</span> <span class="unit">บาท/กก.</span></td></tr>
+        <tr><td>กระดาษหนังสือพิมพ์</td><td><span class="price-val">—</span> <span class="tag-stop">งดชั่วคราว</span></td></tr>
+        <tr><td>กระดาษถุงปูน</td><td><span class="price-val">—</span> <span class="tag-stop">งดชั่วคราว</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- GLASS -->
+  <div class="price-table" id="tab-glass">
+    <table>
+      <thead>
+        <tr>
+          <th>ประเภท</th>
+          <th>ราคา</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>ขวดเบียร์ช้าง (เขียว) สะอาด / กล่อง</td><td><span class="price-val">12.50</span> <span class="unit">บาท/กล่อง</span></td></tr>
+        <tr><td>ขวดไฮเนเก้น (12) / กล่อง สะอาด</td><td><span class="price-val">12.00</span> <span class="unit">บาท/กล่อง</span></td></tr>
+        <tr><td>ขวดหงส์ทอง 700 ซีซี / กล่อง</td><td><span class="price-val">6.80</span> <span class="unit">บาท/กล่อง</span></td></tr>
+        <tr><td>ขวดเบียร์ลีโอ / กล่อง สะอาด</td><td><span class="price-val">7.50</span> <span class="unit">บาท/กล่อง</span></td></tr>
+        <tr><td>ขวดไฮเนเก้น (24) / กล่อง</td><td><span class="price-val">5.00</span> <span class="unit">บาท/กล่อง</span></td></tr>
+        <tr><td>ขวดเหล้าขาว / กล่อง (24)</td><td><span class="price-val">5.00</span> <span class="unit">บาท/กล่อง</span></td></tr>
+        <tr><td>ขวดเบียร์ช้าง (สีเขียว สะอาด) / ใบ</td><td><span class="price-val">0.50</span> <span class="unit">บาท/ใบ</span></td></tr>
+        <tr><td>ขวดเบียร์ลีโอ / ใบ</td><td><span class="price-val">0.15</span> <span class="unit">บาท/ใบ</span></td></tr>
+        <tr><td>เศษแก้วสีเขียว</td><td><span class="price-val">1.45</span> <span class="unit">บาท/กก.</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="contact-section" id="contact">
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="section-tag" style="background:rgba(255,255,255,0.15);color:white;">ติดต่อเรา</div>
+      <h2>พร้อมให้บริการ<br>ทุกวัน</h2>
+      <p>สอบถามราคา นัดรับของ หรือสอบถามข้อมูลเพิ่มเติมได้เลยครับ</p>
+
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <div class="contact-text">
+          <strong>เบอร์โทรศัพท์</strong>
+          <a href="tel:0851674683">085-167-4683 (โย)</a>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon">💬</div>
+        <div class="contact-text">
+          <strong>LINE</strong>
+          <span style="color:#a5d6a7;font-weight:600;">664pdcbu</span>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div class="contact-text">
+          <strong>ที่ตั้ง</strong>
+          <a href="https://maps.app.goo.gl/nbfijP1QeuQgtsFs5" target="_blank">ดูแผนที่ Google Maps →</a>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:20px;">
+        <a href="tel:0851674683" class="btn-map">📞 โทรเลย</a>
+        <a href="https://line.me/ti/p/664pdcbu" target="_blank" class="line-btn">
+          <svg width="20" height="20" viewBox="0 0 40 40" fill="white"><path d="M20 4C11.16 4 4 10.26 4 18c0 6.97 5.87 12.8 13.84 13.8l.85.12c.28.04.5.27.5.56v2.93c0 .44.52.67.84.38l5.1-4.6c.09-.08.2-.13.32-.13C33.23 30.66 36 25.57 36 20c0-7.74-7.16-16-16-16z"/></svg>
+          LINE: 664pdcbu
+        </a>
+      </div>
+    </div>
+
+    <div class="map-box">
+      <iframe
+        src="https://www.google.com/maps?q=13.6,100.9&z=15&output=embed"
+        allowfullscreen
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <p><strong>หจก.โชคดี รับซื้อของเก่า</strong> · โทร <a href="tel:0851674683" style="color:#a5d6a7;">085-167-4683</a> · LINE: 664pdcbu</p>
+  <p style="margin-top:6px;font-size:0.8rem;">ราคาอ้างอิงจาก <a href="https://wongpanit.com" target="_blank" style="color:#a5d6a7;">wongpanit.com</a> · อาจมีการเปลี่ยนแปลง</p>
+</footer>
+
+<script>
+  function showTab(id) {
+    document.querySelectorAll('.price-table').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    event.target.classList.add('active');
+  }
+</script>
+</body>
+</html>
